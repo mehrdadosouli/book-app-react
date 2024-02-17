@@ -4,9 +4,11 @@ const cors=require('cors')
 const app=express()
 app.use(cors())
 app.get('/',cors(),(req,res)=>{
-    console.log(allbooks);
-
-    res.send(JSON.stringify(allbooks.books))
+    if(req.method == 'GET'){
+        res.send(JSON.stringify(allbooks.books))
+    }else{
+        res.send(JSON.stringify('method is wrong'))
+    }
 })
 app.listen(5000)
 
