@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './App.css'
 import Header from './components/Header/Header'
+import Body from './components/Body/Body'
 
 function App() {
   const [photos,setPhotos]=useState([])
@@ -18,6 +19,7 @@ function App() {
     <>
       <div>
           <Header />
+          <Body />
       </div>
     </>
   )
