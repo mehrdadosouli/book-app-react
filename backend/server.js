@@ -18,9 +18,7 @@ fs.readdir(photos,'UTF-8',(err,photo)=>{
     }
 })
 
-
-
-app.get('/',cors(),(req,res)=>{
+app.get('/text',cors(),(req,res)=>{
     if(req.method == 'GET'){
         res.send(JSON.stringify(allbooks.books))
     }else{

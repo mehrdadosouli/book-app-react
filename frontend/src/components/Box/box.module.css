@@ -1,8 +1,31 @@
 .container{
     padding: 1rem 2rem;
-    width: 33%;
+    width: 70%;
     box-shadow: 0 0 3px 1px gray;
+    display: flex;
+    background-color: #3f3f3f;
+    border-radius: 1rem;
+    color: white;
+    margin: 1rem 0;
 }
-.heading{
-
+img{
+    border-radius: 1rem;
+}
+.title{
+    display: flex;
+    flex-direction: column;
+    padding-left: 2rem;
+    font-size: larger;
+    font-weight: bold;
+}
+.description{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 2rem;
+}
+.content{
+    display: flex;
+    flex-direction: column;
+    gap: 2.8rem;
 }
