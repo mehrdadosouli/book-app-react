@@ -1,0 +1,10 @@
+.container{
+    min-height: 10rem;
+    width: 30%;
+    box-shadow: 0 0 3px 1px gray;
+    background-color: #3f3f3f;
+    border-radius: 1rem;
+    color: white;
+    margin: 1rem 0;
+    padding: 1rem;
+}

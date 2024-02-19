@@ -9,12 +9,12 @@ export default function ContextData({ children }) {
       .then((data) => {
         setPhotos(data[0]);
       });
-  },[]);
+    },[]);
   return (
     <>
         <PhotoContextProvider.Provider value={photo}>
              {children}
         </PhotoContextProvider.Provider>
     </>
-  );
+  )
 }
