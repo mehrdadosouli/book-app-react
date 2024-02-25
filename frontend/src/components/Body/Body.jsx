@@ -1,8 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Boxes from '../Box/Boxes';
 import styles from '../Body/style.module.css'
 import FavoriteBox from '../Box/FavoriteBox';
+import { PhotoContextProvider } from "../../context/ContextData.jsx";
+import { ContextTitle } from "../../context/ContextTitleProvider.jsx"
 const Body = () => {
+    const txt = useContext(ContextTitle)
+    const photos = useContext(PhotoContextProvider);
+    const [image, setImage] = useState([]);
+    const [alltexts, setText] = useState([]);
     const [data,setData]=useState({
         allPhoto:[],
         allText:[]
@@ -23,23 +29,30 @@ const Body = () => {
             setData(prev=>({...prev,allPhoto: oldPhoto, allText: oldText}))
         }
 }
-    useEffect(()=>{
-        
-    },[data])
+    const [search,setSearch]=useState('') 
+    const [filterSearch,setFilterSearch]=useState([])
+    const searchHandler=(e)=>{
+        setSearch(e.target.value)
+        setFilterSearch(alltexts.filter(item=>item.title.toLowerCase().includes(search.toLowerCase()) ))
+    }
+    useEffect(() => {
+        setImage(photos);
+        setText(txt);
+      }, [photos,txt,data]);
     return (
         <div className={styles.container}>
-            <input type="text" className={styles.search} placeholder='search..' />
+            <input type="text" className={styles.search} placeholder='search..' value={search} onChange={searchHandler} />
             <div className={styles.boxs}>
-                <div className={data.allPhoto.length ? styles.boxes : styles.leftBox}>
-                    <Boxes handleClickLike={handleClickLike}/>
-                </div>
-                {
-                   data.allPhoto.length ? 
-                    <div className={styles.favoriteBox}>
-                     {data.allText.map((text,index)=><FavoriteBox texts={text} photos={data.allPhoto[index]} />)} 
-                     </div>
-                    : ""
-                }
+                    <div className={data.allPhoto.length ? styles.boxes : styles.leftBox}>
+                        <Boxes handleClickLike={handleClickLike} filterSearch={filterSearch} image={image} alltexts={alltexts}/>
+                    </div>
+                    {
+                    data.allPhoto.length ? 
+                        <div className={styles.favoriteBox}>
+                        {data.allText.map((text,index)=><FavoriteBox texts={text} photos={data.allPhoto[index]} key={index}/>)} 
+                        </div>
+                        : ""
+                    }
             </div>
         </div>
     );
